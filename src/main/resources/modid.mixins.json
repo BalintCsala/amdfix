@@ -3,10 +3,9 @@
   "minVersion": "0.8",
   "package": "me.balintcsala.mixin",
   "compatibilityLevel": "JAVA_8",
-  "mixins": [
-  ],
   "client": [
-    "GLMixin"
+    "GlStateManagerMixin",
+    "ARBShaderObjectsMixin"
   ],
   "injectors": {
     "defaultRequire": 1
