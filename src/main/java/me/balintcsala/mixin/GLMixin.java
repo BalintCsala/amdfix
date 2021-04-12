@@ -16,7 +16,7 @@ import java.util.List;
 
 @Mixin(GlStateManager.class)
 public class GLMixin {
-	@Inject(at = @At("HEAD"), method = "glShaderSource")
+	@Inject(at = @At("HEAD"), method = "glShaderSource", cancellable = true)
 	private static void glShaderSource(int shader, List<String> strings, CallbackInfo ci) {
 		RenderSystem.assertThread(RenderSystem::isOnRenderThread);
 		final MemoryStack stack = MemoryStack.stackGet();
@@ -35,5 +35,6 @@ public class GLMixin {
 		} finally {
 			stack.setPointer(stackPointer);
 		}
+		ci.cancel();
 	}
 }
